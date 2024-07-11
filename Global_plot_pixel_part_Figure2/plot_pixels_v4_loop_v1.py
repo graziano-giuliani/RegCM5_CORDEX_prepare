@@ -5,11 +5,12 @@ Created on Thu Jun 22 09:40:19 2023
 @author: Chen Lu
 """
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
 # environment variables
-path0 = 'D:\\OneDrive\\00_ICTP\\01_RegCM5_tests\\05_pixel_plot\\'
+path0 = '.'
 # subregs = 'ESB RFE ECA TIB EAS'
 # subregs = 'ESB'
 # ys = '2000-2009'
@@ -62,13 +63,17 @@ for snum in domains:
         subregs = 'COMEPHORE GRIPHO'
         
     # fnames
+    try:
+        os.mkdir(os.path.join(path0,'plots_v1_v2'))
+    except:
+        pass
     subregs = subregs.split(' ')
     for subreg in subregs: 
         print('plotting '+snum)
         # fname
-        ofname = path0 + 'txt_files_v4\\' + snum + '_pixels_' + subreg + '_obs_' + ys + '.txt'
-        mfname = path0 + 'txt_files_v4\\' + snum + '_pixels_' + subreg + '_mod_' + ys + '.txt'
-        outfname = path0 + 'plots_v1_v2\\' + snum + '_pixels_' + subreg + '_' + ys + '.png'
+        ofname = os.path.join(path0,'txt_files',snum + '_pixels_' + subreg + '_obs_' + ys + '.txt')
+        mfname = os.path.join(path0,'txt_files',snum + '_pixels_' + subreg + '_mod_' + ys + '.txt')
+        outfname = os.path.join(path0,'plots_v1_v2',snum + '_pixels_' + subreg + '_' + ys + '.png')
     
         # read txt file
         ao = np.loadtxt(ofname)
@@ -103,3 +108,4 @@ for snum in domains:
     
         # save figure (remove the white paddings)
         plt.savefig(outfname, bbox_inches='tight', pad_inches = 0)
+        plt.close()
