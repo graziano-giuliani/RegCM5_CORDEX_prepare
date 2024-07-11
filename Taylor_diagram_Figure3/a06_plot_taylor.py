@@ -5,12 +5,13 @@ Created on Tue Jun  4 10:13:24 2024
 @author: Chen Lu
 """
 
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 import skill_metrics as sm
 
 # environment variables
-path0 = 'D:\\OneDrive\\00_ICTP\\01_RegCM5_tests\\02_plots\\Taylor_diagram\\Python_version\\'
+path0 = '.'
 #subregs = 'ESB RFE ECA TIB EAS'
 #obs = 'APHRO'
 #vname = 'pr'
@@ -83,13 +84,17 @@ for snum in domains:
         # split
         observations = observations.split(' ')
         
+        try:
+            os.mkdir(os.path.join(path0,'figures_masked'))
+        except:
+            pass
         # loop over observations
         for obs in observations:
             # fname
-            fname1 = path0 + 'txt_files_masked_v2\\' + snum + '_' + obs + '_' + vname + '_cc.txt'
-            fname2 = path0 + 'txt_files_masked_v2\\' + snum + '_' + obs + '_' + vname + '_ratio.txt'
-            fname3 = path0 + 'txt_files_masked_v2\\' + snum + '_' + obs + '_' + vname + '_rmse.txt'
-            outfname = path0 + 'figures_masked_v3\\' + snum + '_taylor_' + vname + '_' + obs + '.png'
+            fname1 = os.path.join(path0,'txt_files',snum + '_' + obs + '_' + vname + '_cc.txt')
+            fname2 = os.path.join(path0,'txt_files',snum + '_' + obs + '_' + vname + '_ratio.txt')
+            fname3 = os.path.join(path0,'txt_files',snum + '_' + obs + '_' + vname + '_rmse.txt')
+            outfname = os.path.join(path0,'figures_masked',snum + '_taylor_' + vname + '_' + obs + '.png')
             
             # read txt file
             cc = np.loadtxt(fname1)
