@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# Run me like this: python3 Global_plot_Fig1.py pixels
+# after running the script in Global_plot_pixel_part_Figure2
+
 import sys
 import glob
 
@@ -12,7 +15,7 @@ light_red = "#fff3df"
 ocean = light_blue
 land = light_red
 
-imgpth = './images_new'
+imgpth = './Global_plot_pixel_part_Figure2/plots_v1_v2'
 imgsize = 0.4 # inches
 xalpha = 1.0 # larger less transparent
 
@@ -114,7 +117,6 @@ acro = [ ]
 legenda=Image.open('legenda-new.png')
 global_pixels=Image.open('Global_pixels.png')
 
-
 a=-1
 for rcod in remap.Acronym:
     a=a+1
@@ -126,8 +128,6 @@ for rcod in remap.Acronym:
     else:
         img.append(None)
         acro.append(None)
-        
-
         
 for i in range(np.size(acro)):
     if acro[i]=='NWS':
@@ -254,6 +254,6 @@ def plot_map_colored(color_light, color_dark):
                      loc=position[acro[1]])
     ax2.imshow(legenda, alpha = xalpha)
     ax2.axis('off')
-    plt.savefig(base+'.eps',bbox_inches='tight',dpi=800)
+    plt.savefig('Figure1.eps',bbox_inches='tight',dpi=800)
 
 plot_map_colored(ocean, land)
