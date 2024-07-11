@@ -4,7 +4,10 @@ To obtain the plots at a pressure level, for example **500mb**,
 set the environment variables:
 
 `export path0=$PWD`
+
 `export plev=500`
+
+`export fig_format="png"`
 
 and run the script through ncl afterward:
 
