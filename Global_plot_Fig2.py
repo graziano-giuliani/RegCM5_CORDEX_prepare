@@ -12,7 +12,7 @@ light_red = "#fff3df"
 ocean = light_blue
 land = light_red
 
-imgpth = './images'
+imgpth = './Global_plot_pixel_part_Figure2/plots_v1_v2'
 imgsize = 0.4 # inches
 xalpha = 1.0 # larger less transparent
 
